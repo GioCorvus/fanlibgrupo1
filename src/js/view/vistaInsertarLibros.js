@@ -1,5 +1,5 @@
 import { Vista } from "./vista.js";
 
-export class ListarLibros extends Vista{
+export class InsertarLibros extends Vista{
     
 }

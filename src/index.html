@@ -3,32 +3,31 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel=stylesheet href="css/style.css" />
         <title>Proyecto FanLib</title>
     </head>
     <body>
         <!-- <div id="VistaPortada"> -->
             <!-- <p id="titulo">Proyecto FanLib</p>   -->
         <!-- </div> -->
-        <div id="VistaMenuPrincipal">
+        <div id="VistaInicio">
             <p>Menú principal</p>
-            <button>Libros</button><!-- Te envia a la VistaListarLibros -->
-            <button>Autores</button><!-- Te envia a la VistaListarAutores -->
+            <button id="irLibros">Libros</button><!-- Te envia a la VistaListarLibros -->
+            <button id="irAutores">Autores</button><!-- Te envia a la VistaListarAutores -->
         </div>
         <div id="VistaListarLibros">
             <p>Listado de Libros</p>
-            <button>Añadir libro</button><!-- Te envia a la VistaInsertarLibro -->
-            <button>Volver atrás</button><!-- Te envia a la VistaMenuPrincipal -->
+            <button id="aniadirLibro">Añadir libro</button><!-- Te envia a la VistaInsertarLibros -->
+            <button id="volverInicio">Volver atrás</button><!-- Te envia a la VistaMenuPrincipal -->
         </div>
-        <div id="VistaInsertarLibro">
+        <div id="VistaInsertarLibros">
             <p>Introducimos un nuevo libro por aquí</p>
         </div>
         <div id="VistaListarAutores">
             <p>Aquí se ve el listado de autores</p>
-            <button>Añadir autor</button><!-- Te envia a la VistaInsertarAutor -->
-            <button>Volver atrás</button><!-- Te envia a la VistaMenuPrincipal -->
+            <button id="aniadirAutor">Añadir autor</button><!-- Te envia a la VistaInsertarAutores -->
+            <button id="volverInicio">Volver atrás</button><!-- Te envia a la VistaMenuPrincipal -->
         </div>
-        <div id="VistaInsertarAutor">
+        <div id="VistaInsertarAutores">
             <p>Introducimos un nuevo autor por aquí</p>
         </div>
         <script type="module" src="js/controlador.js"></script>
