@@ -4,6 +4,7 @@ export class Vista {
       Vista.vinicio = Symbol('Inicio')
       Vista.vlistarautores = Symbol('Listar Autores')
       Vista.vlistarlibros = Symbol('Listar Libros')
+      Vista.valtaautor = Symbol('Añadir nuevo autor')
 
     }
   

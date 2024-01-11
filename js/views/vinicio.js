@@ -1,9 +1,12 @@
 import { Vista } from './vista.js'
+import { Rest } from '../service/rest.js';
 
 export class MenuInicial extends Vista {
 
   constructor (controlador, base) {
     super(controlador, base)
+    this.restService = new Rest();
+
 
     // Coger referencias del interfaz
     this.irLibros = this.base.querySelectorAll('button')[0]
@@ -17,8 +20,18 @@ export class MenuInicial extends Vista {
   }
 
 
-  pulsarIrLibros () {
-    this.controlador.verVista(Vista.vlistarlibros)
+  async pulsarIrLibros() {
+
+      try {
+          const librosData = await this.restService.getObra(); 
+          //ver libros
+          console.log('Libros Data:', librosData);
+      } catch (error) {
+          console.error('Error:', error);
+      }
+
+      // cambio la vista tras hacer la solicitud
+      this.controlador.verVista(Vista.vlistarlibros);
   }
 
   pulsarIrAutores () {

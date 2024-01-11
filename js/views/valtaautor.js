@@ -2,12 +2,13 @@ import { Vista } from './vista.js'
 
 
 
-export class ListarLibros extends Vista {
+export class AltaAutor extends Vista {
 
   constructor (controlador, base) {
     super(controlador, base)
 
-    this.irInicio = this.base.querySelectorAll('button')[1]
+
+    this.irInicio = this.base.querySelectorAll('button')[0]
     
     this.irInicio.onclick = this.pulsarVolverInicio.bind(this)
 
@@ -16,5 +17,5 @@ export class ListarLibros extends Vista {
   pulsarVolverInicio(){
     this.controlador.verVista(Vista.vinicio)
   }
-
+  
 }
