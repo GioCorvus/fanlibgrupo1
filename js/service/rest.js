@@ -1,7 +1,7 @@
 export class Rest {
     constructor() {
         this.baseUrl = 'https://migueljaque.com/fanlib/v1/';
-        this.token = 'testToken';
+        this.token = 'testToken'; //testToken YKodC3as4Z
         this.headers = {
             'Fanlibtoken': this.token,
             'Content-Type': 'application/json'
@@ -103,6 +103,9 @@ export class Rest {
     }
 
     handleResponse(response) {
-        // Implement your response handling logic here
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
     }
 }
