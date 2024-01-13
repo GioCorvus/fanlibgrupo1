@@ -1,0 +1,27 @@
+/* Style for all tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Add some space between the table and other content */
+  }
+  
+  /* Style for table header */
+  th {
+    background-color: #f2f2f2; /* Light gray background */
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd; /* Border color */
+  }
+  
+  /* Style for table cells */
+  td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd; /* Border color */
+  }
+  
+  /* Style alternate rows for better readability */
+  tr:nth-child(even) {
+    background-color: #f9f9f9; /* Lighter gray background for even rows */
+  }
+  

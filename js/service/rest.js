@@ -32,13 +32,28 @@ export class Rest {
         }
     }
 
-    async crearObra(obraData) {
+    // async crearObra(obraData) {
+    //     try {
+    //         const url = `${this.baseUrl}/obra`;
+    //         const response = await fetch(url, {
+    //             method: 'POST',
+    //             headers: this.headers,
+    //             body: JSON.stringify(obraData)
+    //         });
+
+    //         return this.handleResponse(response);
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //         return null;
+    //     }
+    // }
+
+    async borrarObra(id) {
         try {
-            const url = `${this.baseUrl}/obra`;
+            const url = `${this.baseUrl}/obra/${id}`;
             const response = await fetch(url, {
-                method: 'POST',
-                headers: this.headers,
-                body: JSON.stringify(obraData)
+                method: 'DELETE',
+                headers: this.headers
             });
 
             return this.handleResponse(response);
@@ -49,6 +64,7 @@ export class Rest {
     }
 
     /* AUTOR */
+    
     async getAutor() {
         try {
             const url = `${this.baseUrl}/autor`;
@@ -72,69 +88,28 @@ export class Rest {
     }
     }
 
-    async getAutorPorId(id) {
-        try {
-            const url = `${this.baseUrl}/autor/${id}`;
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: this.headers
-            });
 
-            return this.handleResponse(response);
-        } catch (error) {
-            console.error('Error:', error);
-            return null;
+
+    async handleResponse(response) {
+        if (!response.ok) {
+            console.error('Error Status:', response.status);
+            const contentType = response.headers.get('content-type');
+            
+            if (contentType && contentType.includes('application/json')) {
+                try {
+                    const errorData = await response.json();
+                    console.error('Error Data:', errorData);
+                    return errorData;
+                } catch (jsonError) {
+                    console.error('Failed to parse JSON error:', jsonError);
+                }
+            }
+                return null;
         }
+    
+        const data = await response.json();
+        console.log('Data received from server:', data);
+        return data;
     }
 
-    async crearAutor(autorData) {
-        try {
-            const url = `${this.baseUrl}/autor`;
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: this.headers,
-                body: JSON.stringify(autorData)
-            });
-
-            return this.handleResponse(response);
-        } catch (error) {
-            console.error('Error:', error);
-            return null;
-        }
-    }
-
-    async actualizarAutor(autorData) {
-        try {
-            const url = `${this.baseUrl}/autor`;
-            const response = await fetch(url, {
-                method: 'PUT',
-                headers: this.headers,
-                body: JSON.stringify(autorData)
-            });
-
-            return this.handleResponse(response);
-        } catch (error) {
-            console.error('Error:', error);
-            return null;
-        }
-    }
-
-    async borrarAutor(id) {
-        try {
-            const url = `${this.baseUrl}/autor/${id}`;
-            const response = await fetch(url, {
-                method: 'DELETE',
-                headers: this.headers
-            });
-
-            return this.handleResponse(response);
-        } catch (error) {
-            console.error('Error:', error);
-            return null;
-        }
-    }
-
-    handleResponse(response) {
-        // Implement your response handling logic here
-    }
 }
