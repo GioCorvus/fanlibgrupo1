@@ -24,18 +24,18 @@ export class MenuInicial extends Vista {
         const librosData = await this.restService.getObra();
         console.log('Libros Data:', librosData);
 
-        // Clear existing table content
+        // se limpia el contenido actual
         const table = document.getElementById('librosTable');
         table.innerHTML = '';
 
-        // Create table header
+        // se crea el header de la tabla
         const headerRow = table.insertRow(0);
         for (const key in librosData[0]) {
             const headerCell = headerRow.insertCell();
             headerCell.textContent = key;
         }
 
-        // Populate table rows
+        // generación dinámica del dom
         librosData.forEach((libro, index) => {
             const row = table.insertRow(index + 1);
             for (const key in libro) {
@@ -51,9 +51,37 @@ export class MenuInicial extends Vista {
     this.controlador.verVista(Vista.vlistarlibros)
 }
 
-  pulsarIrAutores () {
-    this.controlador.verVista(Vista.vlistarautores)
+async pulsarIrAutores() {
+  try {
+      const autoresData = await this.restService.getAutor();
+      console.log('Autores Data:', autoresData);
+
+      // se limpia el contenido actual
+      const table = document.getElementById('autoresTable');
+      table.innerHTML = '';
+
+      // se crea el header de la tabla
+      const headerRow = table.insertRow(0);
+      for (const key in autoresData[0]) {
+          const headerCell = headerRow.insertCell();
+          headerCell.textContent = key;
+      }
+
+      // generación dinámica del dom
+      autoresData.forEach((autor, index) => {
+          const row = table.insertRow(index + 1);
+          for (const key in autor) {
+              const cell = row.insertCell();
+              cell.textContent = autor[key];
+          }
+      });
+
+  } catch (error) {
+      console.error('Error:', error);
   }
+
+  this.controlador.verVista(Vista.vlistarautores);
+}
 
 
 }
