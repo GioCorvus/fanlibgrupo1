@@ -16,12 +16,21 @@
         </div>
         <div id="divListarLibros">
             <p>Listado de Libros</p>
-            <button id="aniadirLibro">Añadir libro</button><!-- Te envia a la VistaInsertarLibros -->
-            <button class="volverInicio">Volver atrás</button><!-- Te envia a la VistaMenuPrincipal -->
+            <table id="librosTable">
+            </table>
+            <button id="aniadirLibro">Añadir libro</button>
+            <button class="volverInicio">Volver atrás</button>
         </div>
-        <!-- <div id="divInsertarLibros">
-            <p>Introducimos un nuevo libro por aquí</p>
-        </div> -->
+        <div id="divInsertarLibros">
+            <p>Introducir un nuevo libro</p>
+            <form id="altaLibroForm" method="post">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required>
+                <br>
+                <button type="submit">Agregar Libro</button>
+            </form>
+            <button class="volverInicio">Volver atrás</button>
+        </div>
         <div id="divListarAutores">
             <p>Aquí se ve el listado de autores</p>
             <button id="aniadirAutor">Añadir autor</button><!-- Te envia a la VistaInsertarAutores -->
