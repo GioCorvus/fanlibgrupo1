@@ -16,26 +16,16 @@ export class ListarLibros extends Vista {
   }
 
   obtenerListadoLibros() {
-    fetch('https://migueljaque.com/fanlib/v1', {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Fanlibtoken': 'testToken'
-        }
+    fetch('https://migueljaque.com/fanlib/v1/autor', {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+        'Fanlibtoken': 'testToken'
+    }
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la petición Fetch');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Listado de Libros:', data);
-    })
-    .catch(error => {
-        console.error('Error en la petición Fetch:', errowlr);
-    });
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error en la petición Fetch:', error));
   }
 
   pulsarIrInsertarLibros() {
