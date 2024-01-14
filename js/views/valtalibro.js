@@ -1,17 +1,20 @@
 import { Vista } from './vista.js';
 import { Rest } from '../service/rest.js';
+import { MenuInicial } from './vinicio.js'; // Import MenuInicial
+
 
 export class AltaLibro extends Vista {
     constructor(controlador, base) {
         super(controlador, base);
         this.restService = new Rest();
+        this.menuInicialObjeto = new MenuInicial(controlador, base);
 
-        // Get references to buttons by order
+
+
         const buttons = this.base.querySelectorAll('button');
         this.agregarLibro = buttons[0];
         this.irInicio = buttons[1];
 
-        // Associate events
         this.agregarLibro.onclick = this.pulsarAgregarLibro.bind(this);
         this.irInicio.onclick = this.pulsarIrInicio.bind(this);
     }
@@ -19,7 +22,7 @@ export class AltaLibro extends Vista {
     async pulsarAgregarLibro(event) {
         event.preventDefault();
 
-        // Get the input field by order
+
         const tituloInput = this.base.querySelectorAll('input')[0];
         const titulo = tituloInput.value.trim();
 
@@ -29,7 +32,7 @@ export class AltaLibro extends Vista {
 
             // Successfully added
             if (obraData) {
-                // Reset the input field
+                // Reset 
                 tituloInput.value = '';
                 console.log('Work added successfully!');
                 this.controlador.verVista(Vista.vlistarlibros);
@@ -37,6 +40,7 @@ export class AltaLibro extends Vista {
 
         } catch (error) {
             console.error('Error adding obra:', error);
+            this.menuInicialObjeto.pulsarIrLibros();
         }
     }
 

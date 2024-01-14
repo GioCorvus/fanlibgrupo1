@@ -17,7 +17,40 @@ export class MenuInicial extends Vista {
     this.irLibros.onclick = this.pulsarIrLibros.bind(this)
     this.irAutores.onclick =  this.pulsarIrAutores.bind(this)
 
+    // flag para imagen portada
+    this.firstTimeLoad = true;
+
+    this.imagenPortada();
+
   }
+
+  async imagenPortada() {
+
+    const imageElement = document.createElement('img');
+    imageElement.src = 'media/img/fanlibbg.jpg'; // Replace with the path to your image
+    imageElement.style.width = '100%';
+    imageElement.style.height = '100%';
+    imageElement.style.position = 'fixed'; // Set position to fixed
+    imageElement.style.top = '0';
+    imageElement.style.left = '0';
+    imageElement.style.opacity = '1'; // Initial opacity
+  
+    // Append the image to the body
+    document.body.appendChild(imageElement);
+  
+    // Wait for 2 seconds
+    await new Promise(resolve => setTimeout(resolve, 2000));
+  
+    // Fade out smoothly
+    imageElement.style.transition = 'opacity 1s ease'; // CSS transition for opacity
+    imageElement.style.opacity = '0';
+  
+    // Remove the image after the transition
+    setTimeout(() => {
+      document.body.removeChild(imageElement);
+    }, 1000); // Delay the removal to match the transition duration
+  }
+  
 
 
   async pulsarIrLibros() {

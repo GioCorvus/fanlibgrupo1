@@ -32,21 +32,21 @@ export class Rest {
         }
     }
 
-    // async crearObra(obraData) {
-    //     try {
-    //         const url = `${this.baseUrl}/obra`;
-    //         const response = await fetch(url, {
-    //             method: 'POST',
-    //             headers: this.headers,
-    //             body: JSON.stringify(obraData)
-    //         });
+    async crearObra(obraData) {
+        try {
+            const url = `${this.baseUrl}/obra`;
+        const response = await fetch(url, {
+            method: 'POST',
+                headers: this.headers,
+                body: JSON.stringify(obraData)
+            });
 
-    //         return this.handleResponse(response);
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //         return null;
-    //     }
-    // }
+            return this.handleResponse(response);
+        } catch (error) {
+            console.error('Error:', error);
+            return null;
+        }
+    }
 
     async borrarObra(id) {
         try {
