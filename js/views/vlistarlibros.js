@@ -32,6 +32,7 @@ export class ListarLibros extends Vista {
         if (result) {
           console.log(`Book with ID ${id} deleted successfully.`);
           console.log("wololo bueno")
+          this.menuInicialObjeto.pulsarIrLibros();
 
         } else {
           console.error(`Failed to delete book with ID ${id}.`);
@@ -40,7 +41,6 @@ export class ListarLibros extends Vista {
       } catch (error) {
         console.error('Error:', error);
         console.log("wololo error")
-        this.menuInicialObjeto.pulsarIrLibros();
 
       }
     }

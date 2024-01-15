@@ -29,6 +29,7 @@ export class AltaLibro extends Vista {
         try {
             const obraData = await this.restService.crearObra({ titulo });
             console.log('Obra Added:', obraData);
+            this.menuInicialObjeto.pulsarIrLibros();
 
             // Successfully added
             if (obraData) {

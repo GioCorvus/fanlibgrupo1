@@ -92,24 +92,61 @@ export class Rest {
 
     async handleResponse(response) {
         if (!response.ok) {
-            console.error('Error Status:', response.status);
-            const contentType = response.headers.get('content-type');
-            
-            if (contentType && contentType.includes('application/json')) {
+        console.error('Estado de Error:', response.status);
+
+        const contentType = response.headers.get('content-type');
+        
+        if (contentType) {
+            if (contentType.includes('application/json')) {
                 try {
                     const errorData = await response.json();
-                    console.error('Error Data:', errorData);
+                    console.error('Datos de Error (JSON):', errorData);
                     return errorData;
                 } catch (jsonError) {
-                    console.error('Failed to parse JSON error:', jsonError);
+                    console.error('Error al analizar el error JSON:', jsonError);
                 }
+            } else if (contentType.includes('text/plain')) {
+                // Manejar respuesta de texto plano
+                const errorText = await response.text();
+                console.error('Datos de Error (Texto):', errorText);
+                return errorText;
+            } else if (contentType.includes('text/html')) {
+                // Manejar respuesta HTML
+                const errorHtml = await response.text();
+                console.error('Datos de Error (HTML):', errorHtml);
+                return errorHtml;
+            } else {
+                // Manejar otros tipos de contenido según sea necesario
+                console.warn('Tipo de contenido no manejado:', contentType);
             }
-                return null;
         }
-    
-        const data = await response.json();
-        console.log('Data received from server:', data);
-        return data;
+
+        return null;
     }
+
+    // Manejar respuesta exitosa
+    const contentType = response.headers.get('content-type');
+
+    if (contentType && contentType.includes('application/json')) {
+        const data = await response.json();
+        console.log('Datos recibidos del servidor (JSON):', data);
+        return data;
+    } else if (contentType && contentType.includes('text/plain')) {
+        // Manejar respuesta de texto plano en casos exitosos
+        const textData = await response.text();
+        console.log('Datos de texto recibidos del servidor:', textData);
+        return textData;
+    } else if (contentType && contentType.includes('text/html')) {
+        // Manejar respuesta HTML en casos exitosos
+        const htmlData = await response.text();
+        console.log('Datos HTML recibidos del servidor:', htmlData);
+        return htmlData;
+    } else {
+        // Manejar otros tipos de contenido en casos exitosos
+        console.warn('Tipo de contenido no manejado:', contentType);
+    }
+}
+
+    
 
 }
