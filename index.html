@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Proyecto FanLib</title>
-        <link rel="stylesheet" href="styles/styles.css">
-    </head>
-    <body>
-        <!-- <div id="VistaPortada"> -->
-            <!-- <p id="titulo">Proyecto FanLib</p>   -->
-        <!-- </div> -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto FanLib</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div id="mainContainer">
+
         <div id="divInicio">
-            <p>Menú principal</p>
-            <button id="irLibros">Libros</button><!-- Te envia a la VistaListarLibros -->
-            <button id="irAutores">Autores</button><!-- Te envia a la VistaListarAutores -->
+            <div class="contentContainer">
+
+                <div class="colourContainer">
+                    <img src="../" alt="">
+                    <h1>FANLIB</h1>
+                    <button id="irLibros">OBRAS</button>
+                    <button id="irAutores">AUTORES</button>
+                </div>
+            </div>
         </div>
+
         <div id="divListarLibros">
-            <p>Listado de Libros</p>
+            <h2>LISTADO DE LIBROS</h2>
+            <div id="tableContainer">
+
             <table id="librosTable">
+
             </table>
+        </div>
             <button id="aniadirLibro">Añadir libro</button>
             <button class="volverInicio">Volver atrás</button>
         </div>
+
         <div id="divInsertarLibros">
-            <p>Introducir un nuevo libro</p>
             <form id="altaLibroForm" method="post">
+                <h2>INTRODUCIR NUEVO LIBRO</h2>
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo" required>
                 <br>
@@ -32,17 +43,26 @@
             </form>
             <button class="volverInicio">Volver atrás</button>
         </div>
+
         <div id="divListarAutores">
+            <h2>LISTADO DE AUTORES</h2>
+            <div id="tableContainer">
+
             <table id="autoresTable">
-                <!-- Table content goes here -->
-              </table>
-            <button id="aniadirAutor">Añadir autor</button><!-- Te envia a la VistaInsertarAutores -->
-            <button class="volverInicio">Volver atrás</button><!-- Te envia a la VistaMenuPrincipal -->
-        </div>
-        <div id="divInsertarAutores">
-            <p>Introducimos un nuevo autor por aquí</p>
+
+            </table>
+            </div>
+
+            <button id="aniadirAutor">Añadir autor</button>
             <button class="volverInicio">Volver atrás</button>
         </div>
-        <script type="module" src="js/controller.js"></script>
-    </body>
+
+        <div id="divInsertarAutores">
+            <h2>Introducir un nuevo autor</h2>
+            <button class="volverInicio">Volver atrás</button>
+        </div>
+    </div>
+
+    <script type="module" src="js/controller.js"></script>
+</body>
 </html>

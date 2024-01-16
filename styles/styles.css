@@ -1,556 +1,165 @@
 
-/* empieza css index */
-* {
+@font-face {
+    font-family: 'goth'; 
+    src: url('../media/font/goth.ttf') format('truetype'); /* Specify the path to your TTF font file */
+}
 
-    box-sizing: border-box;
+body, html {
+    height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Nunito', sans-serif;
-    font-size: 20px;
+    overflow: hidden;
 }
 
-/* navbar color, tamaño etc */
-.nav-back {
-    background-color: #1b3039;
+#mainContainer {
+    width: 100%;
+    height: 100%;
+}
+
+#divInicio, #divInsertarLibros {
+    padding-top: 200px;
+    text-align: center;
+    height: calc(100% - 200px);
+    width: 100%;
+    min-width: 100%;
+    text-align: center; /* Center align text within the container */
+    display: flex;      /* Use flexbox for centering children */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center align children vertically */
+    background: url('../media/img/fondolibro.jpg') center/cover;
+}
+
+#divListarLibros{
+    background: url('../media/img/fondolibro.jpg') center/cover;
+}
+
+#divListarAutores{
+    background: url('../media/img/fondoautor.jpg') center/cover;
+}
+
+
+#divListarLibros, #divListarAutores{
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    text-align: center; /* Center align text within the container */
+    display: flex;      /* Use flexbox for centering children */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center align children vertically */
+}
+
+.colourContainer {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 30%;
+    margin: auto;
     display: flex;
-    justify-content: start;
-    align-items: center;
-    height: 85px;
-    padding: 5px 3%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Add this line to center vertically */
+    background-color: rgba(165, 36, 143, 0.5); /* 50% transparent red background */
 }
 
-/* aqui termina */
-
-/* logo, hover etc */
-.logo {
-    cursor: pointer;
-}
-
-.logo img {
-    height: 75px;
-    width: auto;
-    transition: all 0.5s;
-}
-
-.logo img:hover {
-    transform: scale(1.2);
-}
-
-/* termina logo */
-
-/* lo que contiene el navabr con hover etc */
-
-
-.nav-horizontal {
-    list-style: none;
-}
-
-.nav-horizontal li {
-    display: inline-block;
-    padding: 0px 10px;
-    margin-left: 20px;
-}
-
-.nav-horizontal li:hover {
-    transform: scale(1.2);
-
-}
-
-.nav-horizontal a {
-    font-size: 700;
-    color: white;
-    text-decoration: none;
-}
-
-.nav-horizontal li a:hover {
-    color: #ffbb0e;
-}
-
-/* aqui termina el contenido del navbar */
-
-/* lista desplegable */
-.nav-vertical {
-    position: absolute;
-    display: none;
-    list-style: none;
-    width: 200px;
-    background-color: rgba(68, 68, 68, 0.5);
-}
-
-.nav-horizontal li:hover .nav-vertical {
-    display: block;
-}
-
-/* .nav-vertical li:hover{
-    background-color: rgb(211, 211, 211);
-} */
-
-.nav-vertical li a {
-    display: block;
-    color: white;
-    /* padding: 5px 5px 5px 15px; */
-}
-
-/* empieza boton */
-.botonf button {
-    font-weight: 700;
-    color: #1b3039;
-    padding: 9px 25px;
-    background: #ecf1ec;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-}
-
-.botonf button:hover {
-    background-color: #e2f1f8;
-    color: red;
-    transform: scale(1.1);
-}
-
-/* termina boton */
-
-.centf {
-
-    display: flex;
-    justify-content: space-evenly;
-    margin: 300px;
-}
-
-/* aqui termina la lista desplegable */
-
-/* menu empieza */
-.menu {
-    display: none;
-}
 
 button {
-    margin-left: 20px;
-    font-weight: 700;
-    color: #1b3039;
-    padding: 9px 25px;
-    background: #eceff1;
-    border: none;
-    border-radius: 50px;
+    font-size: 20px;
+    font-family: "goth";
+    padding: 10px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff; /* White outline */
     cursor: pointer;
-    transition: all 0.3s ease 0s;
+    margin: auto;
+    margin: 10px auto;
+    border-radius: 30px;
+    width: 150px;
+    font-weight: bold;
+    transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out, color 0.5s ease-in-out, box-shadow 0.5s ease-in-out, border-color 0.5s ease-in-out;
 }
+
 
 button:hover {
-    background-color: #e2f1f8;
-    color: #ffbc0e;
-    transform: scale(1.1);
-}
-
-@media screen and (max-width: 800px) {
-
-    .nav-horizontal,
-    .botonf {
-        display: none;
-    }
-
-    .menu {
-        display: inherit;
-    }
-}
-
-a {
-    text-decoration: none;
-   
-}
-
-.overlay {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    background-color: rgba(33, 49, 63, .95);
-    overflow: hidden;
-    transition: all 0.3s ease 0s;
-}
-
-.overlay .contenido-overlay {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.overlay a {
-    padding: 15px;
-    font-size: 36px;
-    display: block;
-    transition: all 0.3s ease 0s;
-    font-weight: 700;
-    color: #eceff1;
-}
-
-.overlay a:hover,
-.overlay a:focus {
-    transform: scale(1.2);
-    color: #ffbc0e;
-}
-
-.overlay .cierra {
-    position: absolute;
-    top: 20px;
-    left: 45px;
-    font-size: 65px;
-}
-
-@media screen and (max-height:450px) {
-    .overlay a {
-        font-size: 20px;
-    }
-
-    .overlay .cierra {
-        font-size: 40px;
-        top: 15px;
-        left: 35px;
-    }
-}
-
-/* termina menu */
-
-
-#divInicio {
-    background-image: url(../media/img/fondolibro.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
-
-.fondo_libros {
-    background-image: url(../media/img/fondolibro.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
-
-/* termina css index */
-
-/* AUTORES */
-.fondo_autores {
-    background-image: url(../media/img/Autoresbg.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
-/* AUTORES FIN */
-
-/*form autores css empieza */
-
-/* 
-body {
-    background-image: url(../imagenes/Autoresbg.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-} */
-
-.form-register {
-    width: 400px;
-    background: transparent;
-    padding: 30px;
-    margin: 0 auto;
-    margin-top: 10px;
-    border-radius: 4px;
-    font-family: 'calibri';
-    color: white;
-    backdrop-filter: blur(12px);
-}
-.form-register h4 {
-    background: transparent;
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: black;
-    backdrop-filter: blur(12px);
-}
-
-.controls {
-    width: 100%;
-    background: transparent;
-    padding: 5px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid #1f53c5;
-    font-family: 'calibri';
-    font-size: 18px;
-    backdrop-filter: blur(12px);
-}
-
-.form-register label {
-    background: transparent;
-    height: 40px;
-    text-align: center;
-    font-size: 18px;
-    backdrop-filter: blur(12px);
-}
-
-#b1m {
-    font-weight: 700;
-    color: #1b3039;
-    padding: 9px 25px;
-    background: #ecf1ec;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-}
-
-#b1m:hover {
-    background-color: #e2f1f8;
-    color: red;
-    transform: scale(1.1);
-}
-
-.form-register textarea {
-    max-width: 100%;
-    max-height: 6em;
-}
-
-.form-register textarea::placeholder,
-input::placeholder {
-    max-width: 100%;
-    color: black;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* termina form autores */
-
-/* #fondo_formlibros{
-    background-image: url(../imagenes/formLibros_bg.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    overflow-y: hidden;
-} */
-
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-}
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    border-radius: 50%;
-    padding: 4px;
-}
-.form-register{
-    width: 400px;
-    background: transparent;
-    padding: 30px;
-    margin: 0 auto;
-    margin-top: 0px;
-    border-radius: 4px;
-    font-family: 'calibri';
-    color: white;
-    backdrop-filter: blur(8px);
-}
-.form-register .black-color, .form-register .black-color::placeholder{
-    color: #000;
-}
-.form-register h4{
-    background: transparent;
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: white;
-    backdrop-filter: blur(8px);
-}
-.controls{
-    width: 100%;
-    background: transparent;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 7px;
-    border: 1px solid #1f53c5;
-    font-family: 'calibri';
-    font-size: 18px;
-    backdrop-filter: blur(8px);
-    color: white;
-}
-option{
-    color: black;
-}
-.controls::placeholder{
-    color: white;
-}
-.form-register label{
-    background: transparent;
-    height: 40px;
-    text-align: center;
-    font-size: 18px;
-    backdrop-filter: blur(8px);
-}
-
-#b1ml {
-    font-weight: 700;
-    color: #1b3039;
-    padding: 9px 25px;
-    background: #ecf1ec;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-}
-#b1ml:hover {
-    background-color: #e2f1f8;
-    color: red;
-    transform: scale(1.1);
-}
-
-.form-register textarea{
-    max-width: 100%;
-		max-height: 6em;
-}
-
-.form-register textarea::placeholder, input::placeholder{
-    max-width: 100%;
-    color: white;
-}
-/* form libros termina */
-
-/* libros empieza */
-#divListarLibros {
-    background-image: url(../media/img/formLibros_bg.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
-h1{
-    color: white;
-}
-
-h1 {
-    text-align: center;
-    font-size: 50px;
-    margin-top: 2%;
-}
-/*Inicio tabla*/
-#jtabla {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    background-color: #811269;
+    transform: scale(1.1); /* Adjust the scale factor as needed */
+    color: #ffffff;
 }
 
 table {
-    background-color: white;
-    border: solid black 1px;
+    margin: auto;
     width: 80%;
     border-collapse: collapse;
-    text-align: center;
-}
-
-th,
-td {
-    padding: 10px;
-}
-
-th {
-    background-color: #2ea087;
-    border-bottom: solid 3px #174d40;
-    color: white;
-}
-
-tr:nth-child(odd) {
-    background-color: #ddd;
-}
-/*Final tabla*/
-footer {
-    margin: 2%;
-    text-align: center;
-}
-
-/* libros termina */
-
-/* centrar boton */
-.centrado_boton{
-    display: flex;
-    justify-content: center;
-}
-/* termina centrar bootn */
-
-/*Scroll tabla*/
-.table-wrapper {
-    width: 100%;
-    height: 200px; /* Altura de ejemplo */
-    overflow: auto;
-  }
-  
-.table-wrapper table {
-    border-collapse: separate;
-    border-spacing: 0;
-}
-  
-.table-wrapper table thead {
-    position: -webkit-sticky; /* Safari... */
-    position: sticky;
-    top: 0;
-    left: 0;
-}
-  
-.table-wrapper table thead th,
-.table-wrapper table tbody td {
-    border: 1px solid #000;
-    background-color: #FFF;
-}
-#container{
-    display: flex;
-    flex-flow: wrap;
-}
-.box1,.box2{
-    height: 20em;
-}
-.box1{
-    flex-basis: 30%;
-}
-.box2{
-    flex-basis: 70%;
-    overflow: auto;
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
-    overflow-x: auto;
+    margin-top: 10px;
+    background-color: rgba(255, 200, 220, 0.7); /* Light pink background with some transparency */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
 }
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: left;
+    background-color: rgba(116, 6, 150, 0.5); /* Lighter pink background for table cells */
+    color: #fff; /* White text color */
 }
 
 th {
-    background-color: #f2f2f2;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+    background-color: #916b77; /* Darker pink background for table headers */
 }
-.date{
-    width: 15%;
+
+tr:nth-child(even) {
+    background-color: rgba(116, 6, 150, 0.5); /* Lighter pink background for even rows with some transparency */
 }
-.nationality{
-    width: 12%;
+
+tr:hover {
+    background-color: rgba(8, 66, 47, 0.8); /* Slightly darker pink background on hover with more transparency */
 }
-.textarea{
-    max-width: 200px;
-    word-wrap: break-word;
+
+h1, h2 {
+    font-family: "goth";
+    color: #79fcba;
+    margin: auto;
+    text-align: center;
+    padding-top: 5px;
 }
-.title_listados{
-    color: #000;
+
+
+#altaLibroForm {
+    width: 50%;
+    border-radius: 20px;
+    background-color: plum;
+    align-items: center;
+    justify-content: center;
+    margin:auto;
 }
-.influenced_authors,.title_books{
-    width: 18%;
+
+#altaLibroForm label,
+#altaLibroForm input {
+    margin-bottom: 10px;
 }
-.review{
-    width: 30%;
+
+#tableContainer {
+    height: 70%; /* Set the desired height */
+    overflow: auto;
 }
+
+/* Define the scrollbar track */
+::-webkit-scrollbar {
+width: 12px;
+}
+
+/* Define the scrollbar handle or thumb */
+::-webkit-scrollbar-thumb {
+background-color: #ff66b2; /* Pink color */
+border-radius: 6px;
+}
+
+/* Define the scrollbar track when not being interacted with */
+::-webkit-scrollbar-track {
+background-color: #f0f0f0; /* Light gray background color */
+}
+
+/* Define the scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background-color: #ff3385; /* Darker pink color on hover */
+}
+  
