@@ -33,12 +33,56 @@
         </div>
 
         <div id="divInsertarLibros">
-            <form id="altaLibroForm" method="post">
-                <h2>INTRODUCIR NUEVO LIBRO</h2>
-                <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required>
-                <br>
-                <button type="submit">Agregar Libro</button>
+            <form action="" method="get" id="altaLibroForm">
+                <div class="marco">
+                    <div class="espacio-libros">
+                        <label>Título:</label>
+                        <input type="text" name="tituloLibro" id="titulo" required>
+                    </div>
+                </div>
+                <div class="marco">
+                    <label>Autor:</label>
+                    <select name="autor" required>
+                        <option value="prueba">Elige un Autor</option>
+                    </select>
+                </div>
+
+                <div class="marco">
+                    <div class="espacio-libros">
+                        <label for="fecha_pub">Fecha de publicación:</label>
+                        <input type="date" name="fecha_publicacion" id="fecha" class="borde">
+                    </div>
+                </div>
+
+                <div class="marco">
+                    <div id="descripcion" class="espacio-libros">
+                        <label for="texto">Descripción:</label>
+                        <textarea rows="2" cols="40" name="reseña" id="texto_desc" class="borde"></textarea><br>
+                    </div>
+                </div>
+
+                <div class="marco">
+                    <div id="portada" class="espacio-libros">
+                        Portada:
+                        <input type="file" name="portada" class="borde">
+                    </div>
+                </div>
+                <div class="marco">
+                    <div id="autoresInfluidos" class="espacio-libros">
+                        <label for="reseña">Reseña</label>
+                        <input type="text" name="reseña" id="reseña" class="borde" size="20" maxlength="50">
+                    </div>
+                </div>
+
+                <div class="marco">
+                    <label>genero:</label>
+                    <select name="genero" required>
+                        <option value="prueba">Elige un genero</option>
+                        <option value="terror">terror</option>
+                    </select>
+                </div>
+                 <!-- Botón inferior -->
+            <button type="submit" value="enviar" id="submit"> enviar </button>
             </form>
             <button class="volverInicio">Volver atrás</button>
         </div>

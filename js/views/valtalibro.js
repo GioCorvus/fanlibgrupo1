@@ -17,36 +17,72 @@ export class AltaLibro extends Vista {
 
         this.agregarLibro.onclick = this.pulsarAgregarLibro.bind(this);
         this.irInicio.onclick = this.pulsarIrInicio.bind(this);
+
+        //traerse autores
+        this.desplegable();
+
     }
 
     async pulsarAgregarLibro(event) {
         event.preventDefault();
+    
+        const inputFile = document.getElementsByName('portada')[0].files[0];
+        
+        // Verifica si se ha seleccionado un archivo
+        if (inputFile) {
+          // Convierte la imagen a Base64
+          const base64Image = await this.getBase64FromImage(inputFile);
+        
+          const libroData = {
+            titulo: document.getElementsByName('tituloLibro')[0].value,
+            id_autor: parseInt(document.getElementsByName('autor')[0].value),
+            fecha_publicacion: document.getElementsByName('fecha_publicacion')[0].value,
+            reseña: document.getElementsByName('reseña')[0].value,
+            portada: base64Image, // Guarda la imagen en Base64
+            genero: document.getElementsByName('genero')[0].value,
+          };
+          await this.restService.crearObra(libroData);
+          this.menuInicialObjeto.pulsarIrLibros();
 
-
-        const tituloInput = this.base.querySelectorAll('input')[0];
-        const titulo = tituloInput.value.trim();
-
-        try {
-            const obraData = await this.restService.crearObra({ titulo });
-            console.log('Obra Added:', obraData);
-            this.menuInicialObjeto.pulsarIrLibros();
-
-            // Successfully added
-            if (obraData) {
-                // Reset 
-                tituloInput.value = '';
-                console.log('Work added successfully!');
-                this.controlador.verVista(Vista.vlistarlibros);
-            }
-
-        } catch (error) {
-            console.error('Error adding obra:', error);
-            this.menuInicialObjeto.pulsarIrLibros();
+        } else {
+          console.error('Por favor, selecciona una imagen');
         }
-    }
+        
+      }
+
+      getBase64FromImage(inputFile) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          
+          reader.onload = (event) => {
+            resolve(event.target.result);
+          };
+      
+          reader.onerror = (error) => {
+            reject(error);
+          };
+      
+          reader.readAsDataURL(inputFile);
+        });
+      }
+
+    async desplegable() {
+        const desplegableAutores = document.getElementsByName('autor')[0];
+        const autores = await this.restService.getAutor();
+    
+        autores.forEach((autor) => {
+          const option = document.createElement('option');
+          option.value = autor.id;
+          option.text = autor.nombre;
+          desplegableAutores.add(option);
+        });
+      }
+
+
 
     pulsarIrInicio() {
         console.log("asdasdasd")
         this.controlador.verVista(Vista.vinicio);
     }
+
 }

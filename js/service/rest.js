@@ -1,7 +1,7 @@
 export class Rest {
     constructor() {
         this.baseUrl = 'https://migueljaque.com/fanlib/v1';
-        this.token = 'testToken';
+        this.token = 'YKodC3as4Z';
         this.headers = {
             'Fanlibtoken': this.token,
             'Content-Type': 'application/json'
@@ -86,6 +86,21 @@ export class Rest {
         console.error('Error fetching data:', error);
         return null;
     }
+    }
+
+    async getAutorById(id) {
+        try {
+            const url = `${this.baseUrl}/autor/${id}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: this.headers
+            });
+
+            return this.handleResponse(response);
+        } catch (error) {
+            console.error('Error:', error);
+            return null;
+        }
     }
 
 
