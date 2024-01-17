@@ -132,7 +132,7 @@ export class Rest {
         console.log('Datos recibidos del servidor (JSON):', data);
         return data;
     } else if (contentType && contentType.includes('text/plain')) {
-        // Manejar respuesta de texto plano en casos exitosos
+        // texto plano 
         const textData = await response.text();
         console.log('Datos de texto recibidos del servidor:', textData);
         return textData;
