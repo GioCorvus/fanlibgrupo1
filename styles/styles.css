@@ -135,17 +135,45 @@ h1, h2 {
 
 
 #altaLibroForm {
-    width: 50%;
-    border-radius: 20px;
-    background-color: plum;
-    align-items: center;
-    justify-content: center;
-    margin:auto;
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#altaLibroForm label,
-#altaLibroForm input {
-    margin-bottom: 10px;
+#altaLibroForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#altaLibroForm input,
+#altaLibroForm select,
+#altaLibroForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#altaLibroForm button {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #811269;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#altaLibroForm button:hover {
+    background-color: #6b0e56;
 }
 
 #tableContainer {
