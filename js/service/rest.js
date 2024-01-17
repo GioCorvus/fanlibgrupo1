@@ -116,7 +116,7 @@ export class Rest {
                 console.error('Datos de Error (HTML):', errorHtml);
                 return errorHtml;
             } else {
-                //  otros tipos de contenido según sea necesario
+                // Manejar otros tipos de contenido según sea necesario
                 console.warn('Tipo de contenido no manejado:', contentType);
             }
         }
