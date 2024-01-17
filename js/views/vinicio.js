@@ -1,6 +1,7 @@
 import { Vista } from './vista.js'
 import { Rest } from '../service/rest.js';
 
+
 export class MenuInicial extends Vista {
 
   constructor (controlador, base) {
@@ -12,31 +13,120 @@ export class MenuInicial extends Vista {
     this.irLibros = this.base.querySelectorAll('button')[0]
     this.irAutores = this.base.querySelectorAll('button')[1]
 
-
     // Asociar eventos
     this.irLibros.onclick = this.pulsarIrLibros.bind(this)
     this.irAutores.onclick =  this.pulsarIrAutores.bind(this)
 
+    // flag para imagen portada
+    this.firstTimeLoad = true;
+
+    this.imagenPortada();
+
   }
+
+  async imagenPortada() {
+
+    const imageElement = document.createElement('img');
+    imageElement.src = 'media/img/fanlibbg.jpg'; // Replace with the path to your image
+    imageElement.style.width = '100%';
+    imageElement.style.height = '100%';
+    imageElement.style.position = 'fixed'; // Set position to fixed
+    imageElement.style.top = '0';
+    imageElement.style.left = '0';
+    imageElement.style.opacity = '1'; // Initial opacity
+  
+    // Append the image to the body
+    document.body.appendChild(imageElement);
+  
+    // Wait for 2 seconds
+    await new Promise(resolve => setTimeout(resolve, 2000));
+  
+    // Fade out smoothly
+    imageElement.style.transition = 'opacity 1s ease'; // CSS transition for opacity
+    imageElement.style.opacity = '0';
+  
+    // Remove the image after the transition
+    setTimeout(() => {
+      document.body.removeChild(imageElement);
+    }, 1000); // Delay the removal to match the transition duration
+  }
+  
 
 
   async pulsarIrLibros() {
+    try {
+      const librosData = await this.restService.getObra();
+      console.log('Libros Data:', librosData);
 
-      try {
-          const librosData = await this.restService.getObra(); 
-          //ver libros
-          console.log('Libros Data:', librosData);
-      } catch (error) {
-          console.error('Error:', error);
+      // se limpia el contenido actual
+      const table = document.getElementById('librosTable');
+      table.innerHTML = '';
+
+      // se crea el header de la tabla
+      const headerRow = table.insertRow(0);
+      for (const key in librosData[0]) {
+        const headerCell = headerRow.insertCell();
+        headerCell.textContent = key;
+      }
+      // Add a new header cell for the delete button
+      const deleteHeaderCell = headerRow.insertCell();
+      deleteHeaderCell.textContent = 'Delete';
+
+      librosData.forEach((libro, index) => {
+        const row = table.insertRow(index + 1);
+        for (const key in libro) {
+          const cell = row.insertCell();
+          cell.textContent = libro[key];
+        }
+
+        // Add a new cell for the delete button in each row
+        const deleteCell = row.insertCell();
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-btn'); // Add a class for easy identification
+        deleteButton.setAttribute('data-row-index', index + 1); // Set a data attribute with the row index
+        // deleteButton.addEventListener('click', () => this.handleDelete(index + 1)); // Handle delete directly
+        deleteCell.appendChild(deleteButton);
+      });
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
+    this.controlador.verVista(Vista.vlistarlibros);
+  }
+
+async pulsarIrAutores() {
+  try {
+      const autoresData = await this.restService.getAutor();
+      console.log('Autores Data:', autoresData);
+
+      // se limpia el contenido actual
+      const table = document.getElementById('autoresTable');
+      table.innerHTML = '';
+
+      // se crea el header de la tabla
+      const headerRow = table.insertRow(0);
+      for (const key in autoresData[0]) {
+          const headerCell = headerRow.insertCell();
+          headerCell.textContent = key;
       }
 
-      // cambio la vista tras hacer la solicitud
-      this.controlador.verVista(Vista.vlistarlibros);
+      // generación dinámica del dom
+      autoresData.forEach((autor, index) => {
+          const row = table.insertRow(index + 1);
+          for (const key in autor) {
+              const cell = row.insertCell();
+              cell.textContent = autor[key];
+          }
+      });
+
+  } catch (error) {
+      console.error('Error:', error);
   }
 
-  pulsarIrAutores () {
-    this.controlador.verVista(Vista.vlistarautores)
-  }
+  this.controlador.verVista(Vista.vlistarautores);
+}
 
 
 }

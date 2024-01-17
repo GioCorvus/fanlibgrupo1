@@ -1,0 +1,176 @@
+
+@font-face {
+    font-family: 'goth'; 
+    src: url('../media/font/goth.ttf') format('truetype'); /* Specify the path to your TTF font file */
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#mainContainer {
+    width: 100%;
+    height: 100%;
+}
+
+#divInicio, #divInsertarLibros {
+    padding-top: 200px;
+    text-align: center;
+    height: calc(100% - 200px);
+    width: 100%;
+    min-width: 100%;
+    text-align: center; /* Center align text within the container */
+    display: flex;      /* Use flexbox for centering children */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center align children vertically */
+    background: url('../media/img/fondolibro.jpg') center/cover;
+}
+
+#divListarLibros{
+    background: url('../media/img/fondolibro.jpg') center/cover;
+}
+
+#divListarAutores{
+    background: url('../media/img/fondoautor.jpg') center/cover;
+}
+
+
+#divListarLibros, #divListarAutores{
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    text-align: center; /* Center align text within the container */
+    display: flex;      /* Use flexbox for centering children */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center align children vertically */
+}
+
+.colourContainer {
+    border-radius: 10px;
+    width: 30%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Add this line to center vertically */
+}
+
+#ico{
+    transition: box-shadow 1s ease; /* Smooth transition effect */
+    border-radius: 100%;
+      }
+
+#ico:hover{
+    box-shadow: 0 0 10px 7px white; /* White glow on hover */
+}
+
+.menubtn{
+    width:300px;
+    box-shadow: 0 0 10px 5px black;
+}
+
+button {
+    font-size: 20px;
+    font-family: "goth";
+    padding: 10px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff; /* White outline */
+    cursor: pointer;
+    margin: auto;
+    margin: 10px auto;
+    border-radius: 30px;
+    width: 150px;
+    font-weight: bold;
+    transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out, color 0.5s ease-in-out, box-shadow 0.5s ease-in-out, border-color 0.5s ease-in-out;
+}
+
+
+button:hover {
+    background-color: #811269;
+    transform: scale(1.1); /* Adjust the scale factor as needed */
+    color: #ffffff;
+}
+
+table {
+    margin: auto;
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: rgba(255, 200, 220, 0.7); /* Light pink background with some transparency */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    background-color: rgba(116, 6, 150, 0.5); /* Lighter pink background for table cells */
+    color: #fff; /* White text color */
+}
+
+th {
+    background-color: #916b77; /* Darker pink background for table headers */
+}
+
+tr:nth-child(even) {
+    background-color: rgba(116, 6, 150, 0.5); /* Lighter pink background for even rows with some transparency */
+}
+
+tr:hover {
+    background-color: rgba(8, 66, 47, 0.8); /* Slightly darker pink background on hover with more transparency */
+}
+
+h1, h2 {
+    font-family: "goth";
+    color: #79fcba;
+    margin: auto;
+    text-align: center;
+    padding-top: 5px;
+}
+
+
+#altaLibroForm {
+    width: 50%;
+    border-radius: 20px;
+    background-color: plum;
+    align-items: center;
+    justify-content: center;
+    margin:auto;
+}
+
+#altaLibroForm label,
+#altaLibroForm input {
+    margin-bottom: 10px;
+}
+
+#tableContainer {
+    height: 70%; /* Set the desired height */
+    overflow: auto;
+}
+
+/* Define the scrollbar track */
+::-webkit-scrollbar {
+width: 12px;
+}
+
+/* Define the scrollbar handle or thumb */
+::-webkit-scrollbar-thumb {
+background-color: #ff66b2; /* Pink color */
+border-radius: 6px;
+}
+
+/* Define the scrollbar track when not being interacted with */
+::-webkit-scrollbar-track {
+background-color: #f0f0f0; /* Light gray background color */
+}
+
+/* Define the scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background-color: #ff3385; /* Darker pink color on hover */
+}
+  
