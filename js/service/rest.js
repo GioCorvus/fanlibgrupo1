@@ -106,17 +106,17 @@ export class Rest {
                     console.error('Error al analizar el error JSON:', jsonError);
                 }
             } else if (contentType.includes('text/plain')) {
-                // Manejar respuesta de texto plano
+                //  respuesta de texto plano
                 const errorText = await response.text();
                 console.error('Datos de Error (Texto):', errorText);
                 return errorText;
             } else if (contentType.includes('text/html')) {
-                // Manejar respuesta HTML
+                //  respuesta HTML
                 const errorHtml = await response.text();
                 console.error('Datos de Error (HTML):', errorHtml);
                 return errorHtml;
             } else {
-                // Manejar otros tipos de contenido según sea necesario
+                //  otros tipos de contenido según sea necesario
                 console.warn('Tipo de contenido no manejado:', contentType);
             }
         }
@@ -124,7 +124,7 @@ export class Rest {
         return null;
     }
 
-    // Manejar respuesta exitosa
+    //  respuesta exitosa
     const contentType = response.headers.get('content-type');
 
     if (contentType && contentType.includes('application/json')) {
@@ -132,17 +132,17 @@ export class Rest {
         console.log('Datos recibidos del servidor (JSON):', data);
         return data;
     } else if (contentType && contentType.includes('text/plain')) {
-        // Manejar respuesta de texto plano en casos exitosos
+        //  respuesta de texto plano 
         const textData = await response.text();
         console.log('Datos de texto recibidos del servidor:', textData);
         return textData;
     } else if (contentType && contentType.includes('text/html')) {
-        // Manejar respuesta HTML en casos exitosos
+        //  respuesta HTML 
         const htmlData = await response.text();
         console.log('Datos HTML recibidos del servidor:', htmlData);
         return htmlData;
     } else {
-        // Manejar otros tipos de contenido en casos exitosos
+        //  otros tipos de contenido 
         console.warn('Tipo de contenido no manejado:', contentType);
     }
 }

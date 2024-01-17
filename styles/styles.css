@@ -49,7 +49,6 @@ body, html {
 }
 
 .colourContainer {
-    background-color: #ffffff;
     border-radius: 10px;
     width: 30%;
     margin: auto;
@@ -57,9 +56,21 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center; /* Add this line to center vertically */
-    background-color: rgba(165, 36, 143, 0.5); /* 50% transparent red background */
 }
 
+#ico{
+    transition: box-shadow 1s ease; /* Smooth transition effect */
+    border-radius: 100%;
+      }
+
+#ico:hover{
+    box-shadow: 0 0 10px 7px white; /* White glow on hover */
+}
+
+.menubtn{
+    width:300px;
+    box-shadow: 0 0 10px 5px black;
+}
 
 button {
     font-size: 20px;
