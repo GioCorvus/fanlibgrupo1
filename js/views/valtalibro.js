@@ -62,10 +62,17 @@ export class AltaLibro extends Vista {
                 portada: base64Image,
                 genero: document.getElementsByName('genero')[0].value,
             };
-    
+
             await this.restService.crearObra(libroData);
             this.menuInicialObjeto.pulsarIrLibros();
+    
             document.getElementById('altaLibroForm').reset();
+    
+            const imagePreview = document.getElementById('imagePreview');
+            imagePreview.src = '';
+            imagePreview.style.display = 'none';
+
+
         } else {
             console.error('BIP BOP, IMAGEN OBLIGATORIA');
         }
@@ -99,7 +106,7 @@ export class AltaLibro extends Vista {
         });
       }
 
-
+      
 
     pulsarIrInicio() {
         console.log("asdasdasd")
