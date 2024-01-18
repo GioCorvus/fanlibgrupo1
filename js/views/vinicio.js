@@ -35,17 +35,15 @@ export class MenuInicial extends Vista {
     imageElement.style.left = '0';
     imageElement.style.opacity = '1';
   
-    // Append the image to the body
     document.body.appendChild(imageElement);
   
-    // Wait for 2 seconds
+    // 2 segundos
     await new Promise(resolve => setTimeout(resolve, 2000));
   
-    // Fade out smoothly
+    // fade 
     imageElement.style.transition = 'opacity 1s ease'; // CSS transition for opacity
     imageElement.style.opacity = '0';
   
-    // Remove the image after the transition
     setTimeout(() => {
       document.body.removeChild(imageElement);
     }, 1000); // Delay the removal to match the transition duration
@@ -81,7 +79,7 @@ export class MenuInicial extends Vista {
         const row = table.insertRow(index + 1);
         for (const key in libro) {
           if (!isNaN(key)) {
-            //  numeric keys
+            //  saltar numeric keys
             continue;
           }
           if (key === 'portada') {
@@ -110,7 +108,6 @@ export class MenuInicial extends Vista {
         deleteButton.textContent = 'Delete';
         deleteButton.classList.add('delete-btn');
         deleteButton.setAttribute('data-row-index', index + 1);
-        deleteButton.addEventListener('click', () => this.handleDelete(index + 1));
         deleteCell.appendChild(deleteButton);
       });
   
@@ -120,18 +117,6 @@ export class MenuInicial extends Vista {
   
     this.controlador.verVista(Vista.vlistarlibros);
   }
-
-  async getAuthorName(authorId) {
-    try {
-        const autoresData = await this.restService.getAutor();
-        const author = autoresData.find(autor => autor.id === authorId);
-        return author ? author.nombre : 'Unknown Author';
-    } catch (error) {
-        console.error('Error fetching author data:', error);
-        return 'Unknown Author';
-    }
-}
-  
 
 async pulsarIrAutores() {
   try {
@@ -145,6 +130,10 @@ async pulsarIrAutores() {
       // se crea el header de la tabla
       const headerRow = table.insertRow(0);
       for (const key in autoresData[0]) {
+          if (!isNaN(key)) {
+              // saltar claves numericas
+              continue;
+          }
           const headerCell = headerRow.insertCell();
           headerCell.textContent = key;
       }
@@ -153,6 +142,10 @@ async pulsarIrAutores() {
       autoresData.forEach((autor, index) => {
           const row = table.insertRow(index + 1);
           for (const key in autor) {
+              if (!isNaN(key)) {
+                  //ignorar columnas con numero
+                  continue;
+              }
               const cell = row.insertCell();
               cell.textContent = autor[key];
           }

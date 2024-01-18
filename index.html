@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto FanLib</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" href="media/img/icon.png" type="image/png">
+
 </head>
 <body>
     <div id="mainContainer">
@@ -64,9 +66,13 @@
                 <div class="marco">
                     <div id="portada" class="espacio-libros">
                         Portada:
-                        <input type="file" name="portada" class="borde">
+                        <input type="file" name="portada" id="portadaInput" class="borde">
+                        <img id="imagePreview" alt="Preview" />
                     </div>
                 </div>
+
+
+
                 <div class="marco">
                     <div id="autoresInfluidos" class="espacio-libros">
                         <label for="reseña">Reseña</label>
@@ -77,11 +83,13 @@
                 <div class="marco">
                     <label>genero:</label>
                     <select name="genero" required>
-                        <option value="prueba">Elige un genero</option>
-                        <option value="terror">terror</option>
+ç                        <option value="terror">Terror</option>
+                        <option value="fantasia">Fantasía</option>
+                        <option value="ciencia_ficcion">Ciencia Ficción</option>
+                        <option value="misterio">Misterio</option>
+                        <option value="amor">Amor</option>
                     </select>
                 </div>
-                 <!-- Botón inferior -->
             <button type="submit" value="enviar" id="submit"> enviar </button>
             </form>
             <button class="volverInicio">Volver atrás</button>

@@ -18,37 +18,58 @@ export class AltaLibro extends Vista {
         this.agregarLibro.onclick = this.pulsarAgregarLibro.bind(this);
         this.irInicio.onclick = this.pulsarIrInicio.bind(this);
 
+        this.setupImagePreview();
+
+
         //traerse autores
         this.desplegable();
 
+    }
+
+    setupImagePreview() {
+        const inputFile = document.getElementsByName('portada')[0];
+        const imagePreview = document.getElementById('imagePreview');
+
+        inputFile.addEventListener('change', async () => {
+            const file = inputFile.files[0];
+
+            if (file) {
+                const base64Image = await this.getBase64FromImage(file);
+                imagePreview.src = base64Image;
+                imagePreview.style.display = 'block';
+            } else {
+                imagePreview.src = '';
+                imagePreview.style.display = 'none';
+            }
+        });
     }
 
     async pulsarAgregarLibro(event) {
         event.preventDefault();
     
         const inputFile = document.getElementsByName('portada')[0].files[0];
-        
-        // Verifica si se ha seleccionado un archivo
+    
+        //si se ha seleccionado un archivo...
         if (inputFile) {
-          // Convierte la imagen a Base64
-          const base64Image = await this.getBase64FromImage(inputFile);
-        
-          const libroData = {
-            titulo: document.getElementsByName('tituloLibro')[0].value,
-            id_autor: parseInt(document.getElementsByName('autor')[0].value),
-            fecha_publicacion: document.getElementsByName('fecha_publicacion')[0].value,
-            reseña: document.getElementsByName('reseña')[0].value,
-            portada: base64Image, // Guarda la imagen en Base64
-            genero: document.getElementsByName('genero')[0].value,
-          };
-          await this.restService.crearObra(libroData);
-          this.menuInicialObjeto.pulsarIrLibros();
-
+            //base64 para poder ser subida
+            const base64Image = await this.getBase64FromImage(inputFile);
+    
+            const libroData = {
+                titulo: document.getElementsByName('tituloLibro')[0].value,
+                id_autor: parseInt(document.getElementsByName('autor')[0].value),
+                fecha_publicacion: document.getElementsByName('fecha_publicacion')[0].value,
+                reseña: document.getElementsByName('reseña')[0].value,
+                portada: base64Image,
+                genero: document.getElementsByName('genero')[0].value,
+            };
+    
+            await this.restService.crearObra(libroData);
+            this.menuInicialObjeto.pulsarIrLibros();
+            document.getElementById('altaLibroForm').reset();
         } else {
-          console.error('Por favor, selecciona una imagen');
+            console.error('BIP BOP, IMAGEN OBLIGATORIA');
         }
-        
-      }
+    }
 
       getBase64FromImage(inputFile) {
         return new Promise((resolve, reject) => {

@@ -17,7 +17,8 @@ export class ListarLibros extends Vista {
     this.altaLibro.onclick = this.pulsarAltaLibro.bind(this);
     this.irInicio.onclick = this.pulsarVolverInicio.bind(this);
 
-    this.base.addEventListener('click', this.handleDeleteButtonClick.bind(this));
+    this.base.addEventListener('click', (event) => this.handleDeleteButtonClick(event));
+    
   }
 
   async handleDeleteButtonClick(event) {
@@ -45,6 +46,10 @@ export class ListarLibros extends Vista {
       }
     }
   }
+
+  
+
+
 
   pulsarAltaLibro(){
     this.controlador.verVista(Vista.valtalibro)

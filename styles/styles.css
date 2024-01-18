@@ -135,13 +135,14 @@ h1, h2 {
 
 
 #altaLibroForm {
-    width: 80%;
-    max-width: 600px;
+    width: 70%;
+    max-width: 500px;
     margin: auto;
-    padding: 20px;
+    padding: 10px; /* Reduced padding */
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: -180px;
 }
 
 #altaLibroForm label {
@@ -154,16 +155,16 @@ h1, h2 {
 #altaLibroForm select,
 #altaLibroForm textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 8px; /* Reduced padding */
+    margin-bottom: 8px; /* Reduced margin */
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
 #altaLibroForm button {
-    font-size: 18px;
-    padding: 10px 20px;
+    font-size: 16px; /* Reduced font size */
+    padding: 8px 15px; /* Reduced padding */
     background-color: #811269;
     color: #fff;
     border: none;
@@ -177,9 +178,19 @@ h1, h2 {
 }
 
 #tableContainer {
-    height: 70%; /* Set the desired height */
+    height: 60%; /* Reduced height */
     overflow: auto;
 }
+
+/* Style for the image preview */
+#imagePreview {
+    max-width: 100px; 
+    height: auto;
+    border-radius: 5px;
+    margin: 0 auto; /* Center the image horizontally */
+    display: none;
+}
+
 
 .libro-image {
     max-width: 100px; /* Set the maximum width for the images */
