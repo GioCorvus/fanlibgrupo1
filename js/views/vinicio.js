@@ -1,31 +1,24 @@
-import { Vista } from './vista.js'
+import { Vista } from './vista.js';
 import { Rest } from '../service/rest.js';
-
 
 export class MenuInicial extends Vista {
 
-  constructor (controlador, base) {
-    super(controlador, base)
+  constructor(controlador, base) {
+    super(controlador, base);
     this.restService = new Rest();
+    this.librosData = []; // Property to store librosData
 
+    this.irLibros = this.base.querySelectorAll('button')[0];
+    this.irAutores = this.base.querySelectorAll('button')[1];
 
-    // Coger referencias del interfaz
-    this.irLibros = this.base.querySelectorAll('button')[0]
-    this.irAutores = this.base.querySelectorAll('button')[1]
+    this.irLibros.onclick = this.pulsarIrLibros.bind(this);
+    this.irAutores.onclick = this.pulsarIrAutores.bind(this);
 
-    // Asociar eventos
-    this.irLibros.onclick = this.pulsarIrLibros.bind(this)
-    this.irAutores.onclick =  this.pulsarIrAutores.bind(this)
-
-    // flag para imagen portada
     this.firstTimeLoad = true;
-
     this.imagenPortada();
-
   }
 
   async imagenPortada() {
-
     const imageElement = document.createElement('img');
     imageElement.src = 'media/img/fanlibbg.jpg'; 
     imageElement.style.width = '100%';
@@ -37,126 +30,114 @@ export class MenuInicial extends Vista {
   
     document.body.appendChild(imageElement);
   
-    // 2 segundos
     await new Promise(resolve => setTimeout(resolve, 2000));
   
-    // fade 
-    imageElement.style.transition = 'opacity 1s ease'; // CSS transition for opacity
+    imageElement.style.transition = 'opacity 1s ease';
     imageElement.style.opacity = '0';
   
     setTimeout(() => {
       document.body.removeChild(imageElement);
-    }, 1000); // Delay the removal to match the transition duration
+    }, 1000);
   }
-  
-
 
   async pulsarIrLibros() {
     try {
-      const librosData = await this.restService.getObra();
-      console.log('Libros Data:', librosData);
+      this.librosData = await this.restService.getObra(); // Update librosData here
+      console.log('Libros Data:', this.librosData);
+
+      const galleryContainer = document.getElementById('librosGallery');
+      galleryContainer.innerHTML = '';
+
+      this.librosData.forEach((libro, index) => {
+        const bookContainer = document.createElement('div');
+        bookContainer.classList.add('book-container');
+        galleryContainer.appendChild(bookContainer);
+
+        const imageContainer = document.createElement('div');
+        imageContainer.classList.add('image-container');
+        bookContainer.appendChild(imageContainer);
+
+        if (libro['portada']) {
+          const image = document.createElement('img');
+          image.src = libro['portada'];
+          image.alt = 'Libro Image';
+          image.classList.add('libro-image');
+          imageContainer.appendChild(image);
+        }
+
+        const infoContainer = document.createElement('div');
+        infoContainer.classList.add('info-container');
+        bookContainer.appendChild(infoContainer);
+
+        for (const key in libro) {
+          if (!isNaN(key) || key === 'portada') {
+            continue;
+          }
+
+          const infoRow = document.createElement('div');
+          infoRow.classList.add('info-row');
+
+          const label = document.createElement('div');
+          label.classList.add('label');
+          label.textContent = key;
+          infoRow.appendChild(label);
+
+          const value = document.createElement('div');
+          value.classList.add('value');
+          value.textContent = libro[key];
+          infoRow.appendChild(value);
+
+          infoContainer.appendChild(infoRow);
+        }
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-btn');
+        deleteButton.setAttribute('data-id', libro.id); // Attach id as a data attribute
+        infoContainer.appendChild(deleteButton);
   
-      // se limpia el contenido actual
-      const table = document.getElementById('librosTable');
+        bookContainer.setAttribute('data-row-index', index + 1);
+      });
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
+    this.controlador.verVista(Vista.vlistarlibros);
+  }
+
+  async pulsarIrAutores() {
+    try {
+      const autoresData = await this.restService.getAutor();
+      console.log('Autores Data:', autoresData);
+
+      const table = document.getElementById('autoresTable');
       table.innerHTML = '';
-  
-      // se crea el header de la tabla
+
       const headerRow = table.insertRow(0);
-      for (const key in librosData[0]) {
+      for (const key in autoresData[0]) {
         if (!isNaN(key)) {
-          // saltar los headers que por algun motivo son numeros
           continue;
         }
         const headerCell = headerRow.insertCell();
         headerCell.textContent = key;
       }
-      //  for the image delete
 
-      const deleteHeaderCell = headerRow.insertCell();
-      deleteHeaderCell.textContent = 'Delete';
-  
-      librosData.forEach((libro, index) => {
+      autoresData.forEach((autor, index) => {
         const row = table.insertRow(index + 1);
-        for (const key in libro) {
+        for (const key in autor) {
           if (!isNaN(key)) {
-            //  saltar numeric keys
             continue;
           }
-          if (key === 'portada') {
-
-            const imageCell = row.insertCell();
-            if (libro[key]) {
-              const image = document.createElement('img');
-              image.src = libro[key];
-              image.alt = 'Libro Image';
-              image.classList.add('libro-image'); 
-              imageCell.appendChild(image);
-            } else {
-
-              row.insertCell();
-
-            }
-          } else {
-
-            const cell = row.insertCell();
-            cell.textContent = libro[key];
-          }
+          const cell = row.insertCell();
+          cell.textContent = autor[key];
         }
-      
-        const deleteCell = row.insertCell();
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.classList.add('delete-btn');
-        deleteButton.setAttribute('data-row-index', index + 1);
-        deleteCell.appendChild(deleteButton);
       });
-  
+
     } catch (error) {
       console.error('Error:', error);
     }
-  
-    this.controlador.verVista(Vista.vlistarlibros);
+
+    this.controlador.verVista(Vista.vlistarautores);
   }
-
-async pulsarIrAutores() {
-  try {
-      const autoresData = await this.restService.getAutor();
-      console.log('Autores Data:', autoresData);
-
-      // se limpia el contenido actual
-      const table = document.getElementById('autoresTable');
-      table.innerHTML = '';
-
-      // se crea el header de la tabla
-      const headerRow = table.insertRow(0);
-      for (const key in autoresData[0]) {
-          if (!isNaN(key)) {
-              // saltar claves numericas
-              continue;
-          }
-          const headerCell = headerRow.insertCell();
-          headerCell.textContent = key;
-      }
-
-      // generación dinámica del dom
-      autoresData.forEach((autor, index) => {
-          const row = table.insertRow(index + 1);
-          for (const key in autor) {
-              if (!isNaN(key)) {
-                  //ignorar columnas con numero
-                  continue;
-              }
-              const cell = row.insertCell();
-              cell.textContent = autor[key];
-          }
-      });
-
-  } catch (error) {
-      console.error('Error:', error);
-  }
-
-  this.controlador.verVista(Vista.vlistarautores);
-}
-
-
 }

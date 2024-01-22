@@ -16,7 +16,20 @@ body, html {
     height: 100%;
 }
 
-#divInicio, #divInsertarLibros {
+#divInicio{
+    padding-top: 100px;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    min-width: 100%;
+    text-align: center; /* Center align text within the container */
+    display: flex;      /* Use flexbox for centering children */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center align children vertically */
+    background: url('../media/img/fondolibro.jpg') center/cover;
+}
+
+ #divInsertarLibros {
     padding-top: 200px;
     text-align: center;
     height: calc(100% - 200px);
@@ -93,6 +106,11 @@ button:hover {
     background-color: #811269;
     transform: scale(1.1); /* Adjust the scale factor as needed */
     color: #ffffff;
+}
+
+#tableContainer {
+    height: 75%; /* Reduced height */
+    overflow: auto;
 }
 
 table {
@@ -177,11 +195,6 @@ h1, h2 {
     background-color: #6b0e56;
 }
 
-#tableContainer {
-    height: 60%; /* Reduced height */
-    overflow: auto;
-}
-
 /* Style for the image preview */
 #imagePreview {
     max-width: 100px; 
@@ -224,3 +237,78 @@ background-color: #f0f0f0; /* Light gray background color */
 background-color: #ff3385; /* Darker pink color on hover */
 }
   
+
+
+
+#librosGallery {
+    height: 80vh; /* Set the height to 80% of the viewport height */
+    overflow-y: auto; /* Add vertical scroll when needed */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+.book-container {
+    max-height: 300px;
+    display: flex;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #c8849f;
+    transition: background-color 0.8s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.cream-bg {
+    background-color: cream !important; /* Applied only to favorited books */
+  }
+
+.book-container:hover {
+    background-color: #ff66b2; /* Pink glow on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+    box-shadow: 0 0 10px 7px rgb(153, 92, 149); /* White glow on hover */
+
+}
+
+.image-container {
+    flex: 0 0 30%; /* Adjust the image container width */
+    padding: 10px;
+}
+
+.libro-image {
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.info-container {
+    flex: 1;
+    padding: 10px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.delete-btn {
+    font-size: 16px;
+    background-color: #811269;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+    background-color: #6b0e56;
+}
+
+.cream-gold {
+    background-color: #fffacd; /* Cream Gold color */
+  }
