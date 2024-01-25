@@ -14,6 +14,7 @@ export class MenuInicial extends Vista {
     this.irLibros.onclick = this.pulsarIrLibros.bind(this);
     this.irAutores.onclick = this.pulsarIrAutores.bind(this);
 
+
     this.firstTimeLoad = true;
     this.imagenPortada();
   }
@@ -91,12 +92,35 @@ export class MenuInicial extends Vista {
         }
 
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
         deleteButton.classList.add('delete-btn');
-        deleteButton.setAttribute('data-id', libro.id); // Attach id as a data attribute
+        deleteButton.setAttribute('data-id', libro.id);
+
+        // Create and append trash can icon
+        const trashIcon = document.createElement('i');
+        trashIcon.classList.add('fas', 'fa-trash-alt');
+        deleteButton.appendChild(trashIcon);
+
         infoContainer.appendChild(deleteButton);
-  
-        bookContainer.setAttribute('data-row-index', index + 1);
+
+        const favoriteButton = document.createElement('button');
+      favoriteButton.classList.add('fav-button');
+
+      // Comprueba si el libro está marcado como favorito y actualiza el estilo del botón
+      const isFavorite = this.isBookFavorite(libro.id);
+      if (isFavorite) {
+        favoriteButton.classList.add('favorito');
+      }
+
+      favoriteButton.setAttribute('data-id', libro.id);
+      infoContainer.appendChild(favoriteButton);
+
+      const favoriteIcon = document.createElement('img');
+      favoriteIcon.src = isFavorite ? 'media/img/favfull.png' : 'media/img/favempty.png';
+      favoriteIcon.alt = isFavorite ? 'Full Favorite Icon' : 'Empty Favorite Icon';
+      favoriteIcon.classList.add('fav-icon');
+      favoriteButton.appendChild(favoriteIcon);
+
+      bookContainer.setAttribute('data-row-index', index + 1);
       });
 
     } catch (error) {
@@ -104,6 +128,11 @@ export class MenuInicial extends Vista {
     }
 
     this.controlador.verVista(Vista.vlistarlibros);
+  }
+
+  isBookFavorite(bookId) {
+    const cookieName = `favorite_${bookId}`;
+    return document.cookie.includes(`${cookieName}=true`);
   }
 
   async pulsarIrAutores() {
@@ -140,4 +169,5 @@ export class MenuInicial extends Vista {
 
     this.controlador.verVista(Vista.vlistarautores);
   }
+
 }

@@ -22,9 +22,7 @@ export class Rest {
             }
     
             const data = await response.json(); 
-            
-            console.log('Data received from server:', data);
-    
+                
             return data;
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -48,9 +46,10 @@ export class Rest {
         }
     }
 
-    async borrarObra(id) {
+    async borrarObra(ids) {
         try {
-            const url = `${this.baseUrl}/obra/${id}`;
+            const url = `${this.baseUrl}/obra/${ids.join('/')}`;
+            console.log(ids)
             const response = await fetch(url, {
                 method: 'DELETE',
                 headers: this.headers
@@ -79,8 +78,6 @@ export class Rest {
 
         const data = await response.json(); 
             
-        console.log('Data received from server:', data);
-
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
